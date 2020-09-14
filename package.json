@@ -1,0 +1,19 @@
+{
+    "name": "algo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "jest": "^22.2.2",
+        "nodemon": "^2.0.4"
+    },
+    "jest": {
+        "testEnvironment": "node"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "jest --watchAll --verbose"
+    },
+    "author": "",
+    "license": "ISC"
+}
