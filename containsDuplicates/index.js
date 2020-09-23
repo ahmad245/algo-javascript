@@ -1,3 +1,5 @@
+var t0 = performance.now()
+
 function containsDuplicates(a = []) {
 
     let obj = {};
@@ -26,3 +28,6 @@ function containsDuplicates2(a = []) {
 
 console.log(containsDuplicates2([1, 2, 3, 1]));
 console.log(containsDuplicates2([3, 1]));
+
+var t1 = performance.now()
+console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
