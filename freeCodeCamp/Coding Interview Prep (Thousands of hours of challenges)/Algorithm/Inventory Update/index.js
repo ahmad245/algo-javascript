@@ -26,7 +26,43 @@
 // updateInventory([[0, "Bowling Ball"], [0, "Dirty Sock"], [0, "Hair Pin"], [0, "Microphone"]], [[1, "Hair Pin"], [1, "Half-Eaten Apple"], [1, "Bowling Ball"], [1, "Toothpaste"]]) should return [[1, "Bowling Ball"], [0, "Dirty Sock"], [1, "Hair Pin"], [1, "Half-Eaten Apple"], [0, "Microphone"], [1, "Toothpaste"]].
 function updateInventory(arr1, arr2) {
     // All inventory must be accounted for or you're fired!
-    return arr1;
+    if (arr1.length < 1) return arr2.sort((a, b) => {
+        if (a[1] < b[1]) { return -1; }
+        if (a[1] > b[1]) { return 1; }
+        return 0;
+    });
+    if (arr2.length < 1) return arr1.sort((a, b) => {
+        if (a[1] < b[1]) { return -1; }
+        if (a[1] > b[1]) { return 1; }
+        return 0;
+    });
+    let result = [];
+    for (let i = 0; i < arr1.length; i++) {
+        let isExist = check(arr2, arr1[i][1])
+        if (isExist) {
+            result.push([isExist + arr1[i][0], arr1[i][1]])
+        } else {
+            result.push(arr1[i]);
+        }
+    }
+    result.push(...arr2);
+    return result.sort((a, b) => {
+        if (a[1] < b[1]) { return -1; }
+        if (a[1] > b[1]) { return 1; }
+        return 0;
+    })
+
+}
+
+const check = (arr = [], el) => {
+    let index = arr.findIndex((e) => { return e[1] === el });
+
+    let result = index !== -1 ? arr[index][0] : false;
+    if (result) {
+        arr.splice(index, 1);
+    }
+
+    return result;
 }
 
 // Example inventory lists
