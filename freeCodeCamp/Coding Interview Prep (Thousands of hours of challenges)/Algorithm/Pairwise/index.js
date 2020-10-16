@@ -20,3 +20,27 @@
 // pairwise([1, 1, 1], 2) should return 1.
 // pairwise([0, 0, 0, 0, 1, 1], 1) should return 10.
 // pairwise([], 100) should return 0.
+
+function pairwise(arr, arg) {
+    if (arr.length <= 0) return 0;
+    if (arg == 0) return 0;
+    let result = [];
+    let sum = 0;
+    for (let i = 0; i <= arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (typeof arr[i] === 'number' && typeof arr[j] === 'number') {
+                if (arr[i] + arr[j] === arg) {
+                    result.push(i, j);
+                    arr[i] = 'x';
+                    arr[j] = 'x'
+                }
+            }
+        }
+
+    }
+
+
+    return result.reduce((ac, el) => ac + el, 0);
+}
+
+pairwise([1, 4, 2, 3, 0, 5], 7);
