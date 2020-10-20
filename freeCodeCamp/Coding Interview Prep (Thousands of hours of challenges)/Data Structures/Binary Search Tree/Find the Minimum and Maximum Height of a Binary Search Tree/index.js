@@ -39,17 +39,73 @@
 // The isBalanced method should
 // return true
 // if the tree is a balanced binary search tree.
-var displayTree = tree => console.log(JSON.stringify(tree, null, 2));
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
 
-function Node(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
 }
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+    add(element) {
+        let curr = this.root;
 
-function BinarySearchTree() {
-    this.root = null;
-    // Only change code below this line
+        if (!curr) {
+            this.root = new Node(element);
+            return undefined;
+        }
 
-    // Only change code above this line
+        while (curr) {
+            if (element < curr.value) {
+                if (!curr.left) {
+                    curr.left = new Node(element);
+                    return undefined;
+                }
+                curr = curr.left;
+            } else if (element > curr.value) {
+                if (!curr.right) {
+                    curr.right = new Node(element);
+                    return undefined;
+                }
+                curr = curr.right;
+            } else return null;
+        }
+    }
+
+    findMinHeight(root = this.root) {
+        if (!root) return 0;
+        var leftHeight = this.findMinHeight(root.left);
+        var rightHeight = this.findMinHeight(root.right);
+
+        return Math.min(leftHeight, rightHeight) + 1;
+    }
+    findMaxHeight(root = this.root) {
+        // empty tree.
+        if (!root) return 0;
+        var leftHeight = this.findMinHeight(root.left);
+        var rightHeight = this.findMinHeight(root.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+
+    }
+    isBalanced = () => {};
 }
+let bs = new BinarySearchTree();
+bs.add(10);
+bs.add(5);
+bs.add(15);
+bs.add(8);
+bs.add(9);
+bs.add(20);
+bs.add(25);
+bs.add(12);
+
+bs.findMinHeight();
+bs.findMaxHeight();
+
+var displayTree = (tree) => console.log(JSON.stringify(tree, null, 2));
